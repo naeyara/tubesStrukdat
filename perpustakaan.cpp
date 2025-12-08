@@ -96,6 +96,40 @@ void showAllPeminjam(listPeminjam LP){
     }
 }
 
+void dataPeminjamDummy(listPeminjam &LP){
+    peminjam input;
+    input = {"1", "Jingga Jil", "Jl. Kenangan", "0812-1111-1111", 0};
+    insertLastPeminjam(LP, createNodePeminjam(input));
+
+    input = {"2", "Bambang", "Jl. Jambu", "0812-2222-2222", 0};
+    insertLastPeminjam(LP, createNodePeminjam(input));
+
+    input = {"3", "Sendy", "Jl. Nanas", "0812-3333-3333", 0};
+    insertLastPeminjam(LP, createNodePeminjam(input));
+
+    input = {"4", "Rizki", "Jl. Melon", "0812-4444-4444", 0};
+    insertLastPeminjam(LP, createNodePeminjam(input));
+
+    input = {"5", "Sari Putri", "Jl. Stroberi", "0812-5555-5555", 0};
+    insertLastPeminjam(LP, createNodePeminjam(input));
+
+    input = {"6", "Langgachan", "Jl. Papaya", "0812-6666-6666", 0};
+    insertLastPeminjam(LP, createNodePeminjam(input));
+
+    input = {"7", "Gilbert", "Jl. Durian", "0812-7777-7777", 0};
+    insertLastPeminjam(LP, createNodePeminjam(input));
+
+    input = {"8", "Anastasya", "Jl. Lemon", "0812-8888-8888", 0};
+    insertLastPeminjam(LP, createNodePeminjam(input));
+
+    input = {"9", "Putra Perdana", "Jl. Sawo", "0812-9999-9999", 0};
+    insertLastPeminjam(LP, createNodePeminjam(input));
+
+    input = {"10", "Caca Afriani", "Jl. Anggur", "0812-0000-0000", 0};
+    insertLastPeminjam(LP, createNodePeminjam(input));
+
+}
+
 int main(){
     listPeminjam LP;
     createListPeminjam(LP);
@@ -104,20 +138,27 @@ int main(){
     string idPeminjam, nama, alamat, telpon;
     int jumlahBukuYangDipinjam;
     
-    input = {"1", "Jingga Jil", "Jl. Kenangan", "0812-XXXX-XXX", 4};
-    insertLastPeminjam(LP, createNodePeminjam(input));
-    input = {"2", "Bambang", "Jl. Jambu", "0812-XXXX-XXX", 1};
-    insertLastPeminjam(LP, createNodePeminjam(input));
-    input = {"3", "Sendy", "Jl. Nanas", "0812-XXXX-XXX", 0};
-    insertLastPeminjam(LP, createNodePeminjam(input));
-    input = {"4", "Jil", "Jl. Apel", "0812-XXXX-XXX", 0};
-    insertLastPeminjam(LP, createNodePeminjam(input));
-    input = {"5", "Ridwan Kamil", "Jl. Koperasi", "0812-XXXX-XXX", 1};
-    insertLastPeminjam(LP, createNodePeminjam(input));
-    input = {"6", "Langgachan", "Jl. Papaya", "0812-XXXX-XXX", 0};
-    insertLastPeminjam(LP, createNodePeminjam(input));
+    dataPeminjamDummy(LP);
+
+    // === INPUT ITERASI SEBANYAK n KALI ===
+    // int banyakPeminjam;
+    // cout << "Masukkan banyak peminjam : ";
+    // cin >> banyakPeminjam;
+
+    // for (int i = 1; i <= banyakPeminjam; i++){
+    //     cout << "DATA PEMINJAM KE-" << i << "\n";
+    //     cout << "ID                         : "; cin >> idPeminjam;
+    //     cout << "Nama                       : "; cin >> nama;
+    //     cout << "Alamat                     : "; cin >> alamat;
+    //     cout << "Telpon                     : "; cin >> telpon;
+    //     cout << "Jumlah Buku Yg Dipinjam    : "; cin >> jumlahBukuYangDipinjam; 
+    //     cin.ignore(); //Membersihkan input numerik
+    //     cout << "\n";
+    //     input = {idPeminjam, nama, alamat, telpon, jumlahBukuYangDipinjam};
+    //     insertLastPeminjam(LP, createNodePeminjam(input));
+
+    // };
+
 
     showAllPeminjam(LP);
-
-
 }
