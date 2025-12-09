@@ -3,6 +3,47 @@
 #include <cstring>
 using namespace std;
 
+void createListBuku(listBuku &LB){
+    LB.first = nullptr;
+}
+
+adrBuku createNodeBuku(infotypeBuku Z){
+    adrBuku node = new elemenBuku;
+    node->info = Z;
+    node->next = nullptr;
+    return node;
+}
+
+void insertFirstBuku(listBuku &LB, adrBuku P){
+    if (P == nullptr){
+        return;
+    }
+
+    P->next = LB.first;
+    LB.first = P;
+}
+
+void insertLastBuku(listBuku &LB, adrBuku P){
+    if (P == nullptr){
+        return;
+    }
+
+    if(LB.first == nullptr){
+        LB.first = P;
+    } else {
+        adrBuku R = LB.first;
+        while (R != nullptr){
+            R = R->next;
+        }
+        R->next = P;
+        P->next = nullptr;
+    }
+}
+
+void deleteBuku(listBuku &LP, string idBuku){
+    
+}
+void showAllBuku(listBuku LB);
 
 void createListPeminjam(listPeminjam &LP){
     LP.first = nullptr;
