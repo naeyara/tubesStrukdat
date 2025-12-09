@@ -79,12 +79,15 @@ void showAllBuku(listBuku LB){
     cout << endl;
 }
 
+
+//=== FUNGSI & PROSEDUR (PEMINJAM)
 void createListPeminjam(listPeminjam &LP){
     LP.first = nullptr;
 }
 
 adrPeminjam createNodePeminjam(infotypePeminjam X){
-    adrPeminjam node = new elemenPeminjam; //Membuat node kosong
+    //Membuat node kosong
+    adrPeminjam node = new elemenPeminjam; 
     node->info = X;
     node->next = nullptr;
     return node;
@@ -171,6 +174,17 @@ void showAllPeminjam(listPeminjam LP){
     }
 }
 
+adrPeminjam searchPeminjam(listPeminjam LP, string idPeminjam){
+    adrPeminjam Q = LP.first;
+    while(Q != nullptr){
+        if(Q->info.idPeminjam == idPeminjam){
+            return Q;
+        }
+        Q = Q->next;
+    }
+    return nullptr;
+}
+
 void dataPeminjamDummy(listPeminjam &LP){
     peminjam input;
     input = {"1", "Jingga Jil", "Jl. Kenangan", "0812-1111-1111", 0};
@@ -204,6 +218,32 @@ void dataPeminjamDummy(listPeminjam &LP){
     insertLastPeminjam(LP, createNodePeminjam(input));
 
 }
+//==== FUNGSI & PROSEDUR (RELASI)
+void createListRelasi(listRelasi &LR){
+    LR.first = nullptr;
+}
+
+elemenRelasi* createNodeRelasi(adrBuku B, adrPeminjam P){
+    elemenRelasi* R = new elemenRelasi;
+    R->buku = B;
+    R->peminjam = P;
+    R->next = nullptr;
+    return R;
+}
+
+void insertRelasi (listRelasi &LR, adrRelasi R){
+    if(LR.first == nullptr){
+        LR.first = R;   
+    }else{
+        adrRelasi Q = LR.first;
+        while(Q->next != nullptr){
+            Q = Q->next;
+        }
+        Q->next = R;
+        R->next = nullptr;
+    }
+}
+
 
 int main(){
     listPeminjam LP;

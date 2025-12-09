@@ -44,6 +44,19 @@ struct listPeminjam{
     adrPeminjam first;
 };
 
+typedef struct elemenRelasi *adrRelasi;
+
+struct elemenRelasi{
+    elemenBuku *buku; //Menyimpan pointer ke buku
+    elemenPeminjam *peminjam; //Menyimpan pointer ke buku
+    elemenRelasi *next;
+};
+
+struct listRelasi{
+    elemenRelasi *first;
+};
+
+
 // === DAFTAR PROSEDUR & FUNGSI ===
 void createListBuku(listBuku &LB);
 adrBuku createNodeBuku(infotypeBuku Z);
@@ -52,12 +65,21 @@ void insertLastBuku(listBuku &LB, adrBuku P);
 void deleteBuku(listBuku &LP, string idBuku);
 void showAllBuku(listBuku LB);
 
+
 void createListPeminjam(listPeminjam &LP);
 adrPeminjam createNodePeminjam(infotypePeminjam X);
 void insertLastPeminjam(listPeminjam &LP, adrPeminjam P);
 void insertFirstPeminjam(listPeminjam &LP, adrPeminjam P);
 void deletePeminjam(listPeminjam &LP, string idPeminjam);
 void showAllPeminjam(listPeminjam LP);
+adrPeminjam searchPeminjam(listPeminjam LP, string idPeminjam);
+
+
+void createListRelasi(listRelasi &LR);
+elemenRelasi* createNodeRelasi(adrBuku B, adrPeminjam P);
+void insertRelasi (listRelasi &LR, adrRelasi R);
+
+
 
 
 #endif
