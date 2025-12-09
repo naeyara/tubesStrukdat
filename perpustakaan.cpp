@@ -40,10 +40,44 @@ void insertLastBuku(listBuku &LB, adrBuku P){
     }
 }
 
-void deleteBuku(listBuku &LP, string idBuku){
-    
+void deleteBuku(listBuku &LB, string idBuku){
+    if (LB.first == nullptr){
+        return;
+    }
+
+    adrBuku B = LB.first;
+    if(LB.first->info.idBuku == idBuku){
+        LB.first = B->next;
+        delete B;
+    } else {
+        adrBuku prev = nullptr;
+        while (prev != nullptr && B->info.idBuku != idBuku){
+            prev = B;
+            B = B->next;
+        }
+    prev->next = nullptr;
+    }
 }
-void showAllBuku(listBuku LB);
+void showAllBuku(listBuku LB){
+    cout << "=== Daftar Buku Perpustakaan ===\n";
+
+    if (LB.first == nullptr){
+        cout << "Daftar Buku Kosong." << endl;
+    }
+
+    adrBuku B = LB.first;
+    int i = 1;
+    while (B != nullptr){
+        cout << ">> Data Buku ke- " << i << endl;
+        cout << "ID             : " << B->info.idBuku << endl;
+        cout << "Judul          : " << B->info.judulBuku << endl;
+        cout << "Tahun Terbit   : " << B->info.tahunTerbit << endl;
+        cout << "Rating         : " << B->info.rating << endl;
+        B = B->next;
+
+    }
+    cout << endl;
+}
 
 void createListPeminjam(listPeminjam &LP){
     LP.first = nullptr;
