@@ -350,7 +350,7 @@ void inpuNPeminjam(listPeminjam &LP){
     };
 }
 
-void inpuNBuku(listBuku &LB){
+void inputNBuku(listBuku &LB){
     // === INPUT ITERASI SEBANYAK n KALI ===
     buku input;
     string idBuku, judulBuku, tahunTerbit;
