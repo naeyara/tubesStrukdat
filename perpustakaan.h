@@ -10,7 +10,7 @@ typedef struct buku infotypeBuku;
 struct buku{
     string idBuku;
     string judulBuku;
-    string tahunTerbit;
+    int tahunTerbit;
     float rating;
 };
 
@@ -80,7 +80,10 @@ void createListRelasi(listRelasi &LR);
 elemenRelasi* createNodeRelasi(adrBuku B, adrPeminjam P);
 void insertRelasi (listRelasi &LR, adrRelasi R);
 
+int countRelasiBuku(listRelasi LR, string idBuku);
+void inputNPeminjam(listPeminjam &LP);
+void inputNBuku(listBuku &LB);
 void aksiPinjamBuku(listRelasi &LR, listPeminjam &LP, listBuku &LB, string idPeminjam, string idBuku);
-
+int showMenu();
 
 #endif

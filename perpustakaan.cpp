@@ -98,34 +98,34 @@ adrBuku searchBuku(listBuku LB, string idBuku){
 
 void dataBukuDummy(listBuku &LB){
     buku input;
-    input = {"1", "Laut Berteriak", "2005", 5};
+    input = {"1", "Laut Berteriak", 2005, 5};
     insertLastBuku(LB, createNodeBuku(input));
 
-    input = {"2", "Bumi Manusia", "1980", 4.8};
+    input = {"2", "Bumi Manusia", 1980, 4.8};
     insertLastBuku(LB, createNodeBuku(input));
 
-    input = {"3", "Negeri Para Bedebah", "2012", 4.5};
+    input = {"3", "Negeri Para Bedebah", 2012, 4.5};
     insertLastBuku(LB, createNodeBuku(input));
 
-    input = {"4", "Laskar Pelangi", "2005", 4.7};
+    input = {"4", "Laskar Pelangi", 2005, 4.7};
     insertLastBuku(LB, createNodeBuku(input));
 
-    input = {"5", "Ayat-Ayat Cinta", "2004", 4.6};
+    input = {"5", "Ayat-Ayat Cinta", 2004, 4.6};
     insertLastBuku(LB, createNodeBuku(input));
 
-    input = {"6", "Pulang", "2015", 4.9};
+    input = {"6", "Pulang", 2015, 4.9};
     insertLastBuku(LB, createNodeBuku(input));
 
-    input = {"7", "Hujan", "2016", 4.8};
+    input = {"7", "Hujan", 2016, 4.8};
     insertLastBuku(LB, createNodeBuku(input));
 
-    input = {"8", "Mariposa", "2018", 4.4};
+    input = {"8", "Mariposa", 2018, 4.4};
     insertLastBuku(LB, createNodeBuku(input));
 
-    input = {"9", "Dilan 1990", "2014", 4.5};
+    input = {"9", "Dilan 1990", 2014, 4.5};
     insertLastBuku(LB, createNodeBuku(input));
 
-    input = {"10", "Critical Eleven", "2015", 4.3};
+    input = {"10", "Critical Eleven", 2015, 4.3};
     insertLastBuku(LB, createNodeBuku(input));
 
 }
@@ -321,10 +321,28 @@ void aksiPinjamBuku(listRelasi &LR, listPeminjam &LP, listBuku &LB, string idPem
     adrRelasi R = createNodeRelasi(B, P);
     insertRelasi(LR, R);
     P->info.jumlahBukuYangDipinjam++;
+    
+    //Input Rating
+    int jumlahPeminjam = countRelasiBuku(LR, idBuku);
 
+
+
+    
 
 }
 
+int countRelasiBuku(listRelasi LR, string idBuku){
+    int count = 0;
+    adrRelasi R = LR.first;
+
+    while(R != nullptr){
+        if(R->buku->info.idBuku == idBuku){
+            count++;
+        }
+        R = R->next;
+    }
+    return count;
+}
 
 void inputNPeminjam(listPeminjam &LP){
     // === INPUT ITERASI SEBANYAK n KALI ===
@@ -352,8 +370,9 @@ void inputNPeminjam(listPeminjam &LP){
 
 void inputNBuku(listBuku &LB){
     // === INPUT ITERASI SEBANYAK n KALI ===
-    buku input;
-    string idBuku, judulBuku, tahunTerbit;
+    buku inputBuku;
+    string idBuku, judulBuku;
+    int tahunTerbit;
     float rating;
     int banyakBuku;
 
@@ -361,18 +380,41 @@ void inputNBuku(listBuku &LB){
     cin >> banyakBuku;
 
     for (int i = 1; i <= banyakBuku; i++){
-        cout << ">> DATA PEMINJAM KE-" << i << "\n";
-        cout << "ID Buku: "; cin >> idBuku;
-        cout << "Judul Buku: "; cin >> judulBuku;
-        cout << "Tahun Terbit: "; cin >> tahunTerbit;
-        // cout << "Rating: "; cin >> rating;
+        cout << ">> DATA BUKU KE-" << i << "\n";
+        cout << "ID Buku        : "; cin >> idBuku;
+        cout << "Judul Buku     : "; cin >> judulBuku;
+        cout << "Tahun Terbit   : "; cin >> tahunTerbit;
+        cin.ignore(); //Membersihkan input numerik
+        cout << "Rating         : "; cin >> rating;
         cin.ignore(); //Membersihkan input numerik
         cout << "\n";
-        input = {idBuku, judulBuku, tahunTerbit, rating};
-        insertLastBuku(LB, createNodeBuku(input));
+        //BUTUH FUNGSI HITUNG RATING
+        // inputBuku ={idBuku, judulBuku, tahunTerbit, rating};
+
+        // insertLastBuku(LB, createNodeBuku(inputBuku));
 
     };
 }
+int showMenu(){
+    int inputUser;
+    cout << "\n=== MENU PERPUSTAKAAN ===\n";
+    cout << "[1] Insert Last Buku\n";
+    cout << "[2] Insert First Buku\n";
+    cout << "[3] Insert Last Peminjam\n";
+    cout << "[4] Insert First Peminjam\n";
+    cout << "[5] Show All Peminjam\n";
+    cout << "[6] Show All Buku\n";
+    cout << "[7] Aksi Peminjaman\n";
+    cout << "[8] Delete Peminjam\n";
+    cout << "[9] Delete Buku\n\n";
+    cout << "Masukkan pilihan anda : ";
+    cin >> inputUser;
+
+    return inputUser;
+}
+
+
+
 int main(){
     listPeminjam LP;
     createListPeminjam(LP);
@@ -385,4 +427,5 @@ int main(){
 
     showAllPeminjam(LP);
     showAllBuku(LB);
+    cout << showMenu();
 }
