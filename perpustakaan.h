@@ -80,7 +80,7 @@ void createListRelasi(listRelasi &LR);
 elemenRelasi* createNodeRelasi(adrBuku B, adrPeminjam P);
 void insertRelasi (listRelasi &LR, adrRelasi R);
 
-
+void aksiPinjamBuku(listRelasi &LR, listPeminjam &LP, listBuku &LB, string idPeminjam, string idBuku);
 
 
 #endif
