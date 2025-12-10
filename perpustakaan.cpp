@@ -96,6 +96,7 @@ adrBuku searchBuku(listBuku LB, string idBuku){
     return nullptr;
 }
 
+<<<<<<< HEAD
 void dataBukuDummy(listBuku &LB){
     buku input;
     input = {"1", "Laut Berteriak", 2005};
@@ -129,6 +130,8 @@ void dataBukuDummy(listBuku &LB){
     insertLastBuku(LB, createNodeBuku(input));
 
 }
+=======
+>>>>>>> 26b9b1057e96c6827416dfb470a2d1aa12cd174c
 
 //=== FUNGSI & PROSEDUR (PEMINJAM)
 void createListPeminjam(listPeminjam &LP){
@@ -237,6 +240,198 @@ adrPeminjam searchPeminjam(listPeminjam LP, string idPeminjam){
     return nullptr;
 }
 
+//==== FUNGSI & PROSEDUR (RELASI)
+void createListRelasi(listRelasi &LR){
+    LR.first = nullptr;
+}
+
+elemenRelasi* createNodeRelasi(adrBuku B, adrPeminjam P){
+    elemenRelasi* R = new elemenRelasi;
+    R->buku = B;
+    R->peminjam = P;
+    R->next = nullptr;
+    return R;
+}
+
+void insertRelasi (listRelasi &LR, adrRelasi R){
+    if(LR.first == nullptr){
+        LR.first = R;   
+    }else{
+        adrRelasi Q = LR.first;
+        while(Q->next != nullptr){
+            Q = Q->next;
+        }
+        Q->next = R;
+        R->next = nullptr;
+    }
+}
+
+//=== FUNGSI & PROSEDUR (TAMBAHAN) ===
+void aksiPinjamBuku(listRelasi &LR, listPeminjam &LP, listBuku &LB, string idPeminjam, string idBuku){
+    //Mencari subjek peminjam
+    adrPeminjam P = searchPeminjam(LP, idPeminjam);
+    if(P == nullptr){
+        cout << "Peminjam dengan ID " << idPeminjam << " tidak ditemukan!\n";
+        return;
+    }
+
+    //Mencari buku
+    adrBuku B = searchBuku(LB, idBuku);
+    if(B == nullptr){
+        cout << "Buku dengan ID " << idBuku << " tidak ditemukan!\n";
+        return;
+    }
+
+    //Cek jumlah peminjaman yang telah dilakukan
+    if(P->info.jumlahBukuYangDipinjam > 5){
+        cout << "Tidak bisa melakukan peminjaman, anda melewati batas aturan\n";
+        return;
+    }
+
+    //Hubungkan dengan node relasi
+    adrRelasi R = createNodeRelasi(B, P);
+    insertRelasi(LR, R);
+    P->info.jumlahBukuYangDipinjam++;
+    
+    //Input Rating
+    int jumlahPeminjam = countRelasiBuku(LR, idBuku);
+}
+
+void showAllRelasiBuku(listRelasi LR, string idBuku){
+    adrRelasi R = LR.first;
+    bool ketemu = false;
+    int i  = 1;
+    cout << "\n=== DAFTAR PEMINJAM BUKU " << idBuku << " ===\n";
+    while(R != nullptr){
+        if(R->buku->info.idBuku == idBuku){
+            cout << i << ". ID: " << R->peminjam->info.idPeminjam << " | Nama: " << R->peminjam->info.nama << endl;
+            ketemu = true;
+            i++;
+        }
+        R = R->next;
+    }
+    if(!ketemu){
+        cout << "Tidak ada peminjam buku ID " << idBuku << endl;
+    }
+}
+
+int countRelasiBuku(listRelasi LR, string idBuku){
+    int count = 0;
+    adrRelasi R = LR.first;
+
+    while(R != nullptr){
+        if(R->buku->info.idBuku == idBuku){
+            count++;
+        }
+        R = R->next;
+    }
+    return count;
+}
+
+void inputNPeminjam(listPeminjam &LP){
+    // === INPUT ITERASI SEBANYAK n KALI ===
+    peminjam input;
+    string idPeminjam, nama, alamat, telpon;
+    int jumlahBukuYangDipinjam;
+    int banyakPeminjam;
+    cout << "Masukkan banyak peminjam : ";
+    cin >> banyakPeminjam;
+
+    for (int i = 1; i <= banyakPeminjam; i++){
+        cout << ">> DATA PEMINJAM KE-" << i << "\n";
+        cout << "ID                         : "; cin >> idPeminjam;
+        cout << "Nama                       : "; cin >> nama;
+        cout << "Alamat                     : "; cin >> alamat;
+        cout << "Telpon                     : "; cin >> telpon;
+        cout << "Jumlah Buku Yg Dipinjam    : "; cin >> jumlahBukuYangDipinjam; 
+        cin.ignore(); //Membersihkan input numerik
+        cout << "\n";
+        input = {idPeminjam, nama, alamat, telpon, jumlahBukuYangDipinjam};
+        insertLastPeminjam(LP, createNodePeminjam(input));
+
+    };
+}
+
+void inputNBuku(listBuku &LB){
+    // === INPUT ITERASI SEBANYAK n KALI ===
+    buku inputBuku;
+    string idBuku, judulBuku;
+    int tahunTerbit;
+    float rating;
+    int banyakBuku;
+
+    cout << "Masukkan banyak buku : ";
+    cin >> banyakBuku;
+
+    for (int i = 1; i <= banyakBuku; i++){
+        cout << ">> DATA BUKU KE-" << i << "\n";
+        cout << "ID Buku        : "; cin >> idBuku;
+        cout << "Judul Buku     : "; cin >> judulBuku;
+        cout << "Tahun Terbit   : "; cin >> tahunTerbit;
+        cin.ignore(); //Membersihkan input numerik
+        cout << "Rating         : "; cin >> rating;
+        cin.ignore(); //Membersihkan input numerik
+        cout << "\n";
+        //BUTUH FUNGSI HITUNG RATING
+        // inputBuku ={idBuku, judulBuku, tahunTerbit, rating};
+
+        // insertLastBuku(LB, createNodeBuku(inputBuku));
+
+    };
+}
+int showMenu(){
+    int inputUser;
+    cout << "\n=== MENU PERPUSTAKAAN ===\n";
+    cout << "[1] Insert Last Buku\n";
+    cout << "[2] Insert First Buku\n";
+    cout << "[3] Insert Last Peminjam\n";
+    cout << "[4] Insert First Peminjam\n";
+    cout << "[5] Show All Peminjam\n";
+    cout << "[6] Show All Buku\n";
+    cout << "[7] Aksi Peminjaman\n";
+    cout << "[8] Delete Peminjam\n";
+    cout << "[9] Delete Buku\n\n";
+    cout << "Masukkan pilihan anda : ";
+    cin >> inputUser;
+
+    return inputUser;
+}
+
+
+void dataBukuDummy(listBuku &LB){
+    buku input;
+    input = {"1", "Laut Berteriak", 2005, 5};
+    insertLastBuku(LB, createNodeBuku(input));
+
+    input = {"2", "Bumi Manusia", 1980, 4.8};
+    insertLastBuku(LB, createNodeBuku(input));
+
+    input = {"3", "Negeri Para Bedebah", 2012, 4.5};
+    insertLastBuku(LB, createNodeBuku(input));
+
+    input = {"4", "Laskar Pelangi", 2005, 4.7};
+    insertLastBuku(LB, createNodeBuku(input));
+
+    input = {"5", "Ayat-Ayat Cinta", 2004, 4.6};
+    insertLastBuku(LB, createNodeBuku(input));
+
+    input = {"6", "Pulang", 2015, 4.9};
+    insertLastBuku(LB, createNodeBuku(input));
+
+    input = {"7", "Hujan", 2016, 4.8};
+    insertLastBuku(LB, createNodeBuku(input));
+
+    input = {"8", "Mariposa", 2018, 4.4};
+    insertLastBuku(LB, createNodeBuku(input));
+
+    input = {"9", "Dilan 1990", 2014, 4.5};
+    insertLastBuku(LB, createNodeBuku(input));
+
+    input = {"10", "Critical Eleven", 2015, 4.3};
+    insertLastBuku(LB, createNodeBuku(input));
+
+}
+
 void dataPeminjamDummy(listPeminjam &LP){
     peminjam input;
     
@@ -271,11 +466,44 @@ void dataPeminjamDummy(listPeminjam &LP){
     insertLastPeminjam(LP, createNodePeminjam(input));
 
 }
-//==== FUNGSI & PROSEDUR (RELASI)
-void createListRelasi(listRelasi &LR){
-    LR.first = nullptr;
+
+void dataRelasiDummy(listRelasi &LR, listBuku LB, listPeminjam LP){
+    // Ambil address buku
+    adrBuku B1 = searchBuku(LB, "1");
+    adrBuku B2 = searchBuku(LB, "2");
+    adrBuku B3 = searchBuku(LB, "3");
+    adrBuku B4 = searchBuku(LB, "4");
+
+    // Ambil address peminjam
+    adrPeminjam P1 = searchPeminjam(LP, "1");
+    adrPeminjam P2 = searchPeminjam(LP, "2");
+    adrPeminjam P3 = searchPeminjam(LP, "3");
+    adrPeminjam P4 = searchPeminjam(LP, "4");
+
+    //Pinjam B1
+    adrRelasi R1 = createNodeRelasi(B1, P1);
+    insertRelasi(LR, R1);
+    adrRelasi R2 = createNodeRelasi(B1, P2);
+    insertRelasi(LR, R2);
+
+    //Pinjam B2
+    adrRelasi R3 = createNodeRelasi(B2, P1);
+    insertRelasi(LR, R3);
+
+    //Pinjam B3
+    adrRelasi R4 = createNodeRelasi(B3, P3);
+    insertRelasi(LR, R4);
+    adrRelasi R5 = createNodeRelasi(B3, P4);
+    insertRelasi(LR, R5);
+
+    //Pinjam B4
+    adrRelasi R6 = createNodeRelasi(B4, P3);
+    insertRelasi(LR, R6);
+    adrRelasi R7 = createNodeRelasi(B4, P4);
+    insertRelasi(LR, R7);
 }
 
+<<<<<<< HEAD
 elemenRelasi* createNodeRelasi(adrBuku B, adrPeminjam P){
     elemenRelasi* R = new elemenRelasi;
     R->buku = B;
@@ -424,6 +652,8 @@ void inputNBuku(listBuku &LB){
     };
 }
 
+=======
+>>>>>>> 26b9b1057e96c6827416dfb470a2d1aa12cd174c
 int main(){
     listPeminjam LP;
     createListPeminjam(LP);
@@ -431,9 +661,22 @@ int main(){
     listBuku LB;
     createListBuku(LB);
 
+    listRelasi LR;
+    createListRelasi(LR);
+
     dataBukuDummy(LB);
     dataPeminjamDummy(LP);
 
     showAllPeminjam(LP);
     showAllBuku(LB);
+
+    dataRelasiDummy(LR, LB, LP);
+    showAllRelasiBuku(LR, "1");
+    showAllRelasiBuku(LR, "2");
+    showAllRelasiBuku(LR, "3");
+    showAllRelasiBuku(LR, "4");
+    showAllRelasiBuku(LR, "5");
+
+
+    // cout << showMenu();
 }

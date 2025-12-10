@@ -81,8 +81,13 @@ void inpuNPeminjam(listPeminjam &LP);
 void createListRelasi(listRelasi &LR);
 elemenRelasi* createNodeRelasi(adrBuku B, adrPeminjam P);
 void insertRelasi (listRelasi &LR, adrRelasi R);
+void showAllRelasiBuku(listRelasi LR, string idBuku);
+void dataRelasiDummy(listRelasi &LR, listBuku LB, listPeminjam LP);
 
+int countRelasiBuku(listRelasi LR, string idBuku);
+void inputNPeminjam(listPeminjam &LP);
+void inputNBuku(listBuku &LB);
 void aksiPinjamBuku(listRelasi &LR, listPeminjam &LP, listBuku &LB, string idPeminjam, string idBuku);
-
+int showMenu();
 
 #endif
