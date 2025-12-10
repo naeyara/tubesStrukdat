@@ -64,6 +64,7 @@ void insertFirstBuku(listBuku &LB, adrBuku P);
 void insertLastBuku(listBuku &LB, adrBuku P);
 void deleteBuku(listBuku &LP, string idBuku);
 void showAllBuku(listBuku LB);
+adrBuku searchBuku(listBuku LB, string idBuku);
 
 
 void createListPeminjam(listPeminjam &LP);
@@ -73,7 +74,7 @@ void insertFirstPeminjam(listPeminjam &LP, adrPeminjam P);
 void deletePeminjam(listPeminjam &LP, string idPeminjam);
 void showAllPeminjam(listPeminjam LP);
 adrPeminjam searchPeminjam(listPeminjam LP, string idPeminjam);
-
+void inpuNPeminjam(listPeminjam &LP);
 
 void createListRelasi(listRelasi &LR);
 elemenRelasi* createNodeRelasi(adrBuku B, adrPeminjam P);
