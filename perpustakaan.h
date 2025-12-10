@@ -50,6 +50,7 @@ struct elemenRelasi{
     elemenBuku *buku; //Menyimpan pointer ke buku
     elemenPeminjam *peminjam; //Menyimpan pointer ke buku
     elemenRelasi *next;
+    float nilai = 0;
 };
 
 struct listRelasi{
@@ -87,5 +88,6 @@ void inputNPeminjam(listPeminjam &LP);
 void inputNBuku(listBuku &LB);
 void aksiPinjamBuku(listRelasi &LR, listPeminjam &LP, listBuku &LB, string idPeminjam, string idBuku);
 int showMenu();
+void rating(listRelasi &LR,listBuku LB, string idBuku);
 
 #endif
