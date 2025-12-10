@@ -50,6 +50,8 @@ struct elemenRelasi{
     elemenBuku *buku; //Menyimpan pointer ke buku
     elemenPeminjam *peminjam; //Menyimpan pointer ke buku
     elemenRelasi *next;
+    float penilain;
+    float total;
 };
 
 struct listRelasi{

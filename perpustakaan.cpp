@@ -98,34 +98,34 @@ adrBuku searchBuku(listBuku LB, string idBuku){
 
 void dataBukuDummy(listBuku &LB){
     buku input;
-    input = {"1", "Laut Berteriak", 2005, 5};
+    input = {"1", "Laut Berteriak", 2005};
     insertLastBuku(LB, createNodeBuku(input));
 
-    input = {"2", "Bumi Manusia", 1980, 4.8};
+    input = {"2", "Bumi Manusia", 1980};
     insertLastBuku(LB, createNodeBuku(input));
 
-    input = {"3", "Negeri Para Bedebah", 2012, 4.5};
+    input = {"3", "Negeri Para Bedebah", 2012};
     insertLastBuku(LB, createNodeBuku(input));
 
-    input = {"4", "Laskar Pelangi", 2005, 4.7};
+    input = {"4", "Laskar Pelangi", 2005};
     insertLastBuku(LB, createNodeBuku(input));
 
-    input = {"5", "Ayat-Ayat Cinta", 2004, 4.6};
+    input = {"5", "Ayat-Ayat Cinta", 2004};
     insertLastBuku(LB, createNodeBuku(input));
 
-    input = {"6", "Pulang", 2015, 4.9};
+    input = {"6", "Pulang", 2015};
     insertLastBuku(LB, createNodeBuku(input));
 
-    input = {"7", "Hujan", 2016, 4.8};
+    input = {"7", "Hujan", 2016};
     insertLastBuku(LB, createNodeBuku(input));
 
-    input = {"8", "Mariposa", 2018, 4.4};
+    input = {"8", "Mariposa", 2018};
     insertLastBuku(LB, createNodeBuku(input));
 
-    input = {"9", "Dilan 1990", 2014, 4.5};
+    input = {"9", "Dilan 1990", 2014};
     insertLastBuku(LB, createNodeBuku(input));
 
-    input = {"10", "Critical Eleven", 2015, 4.3};
+    input = {"10", "Critical Eleven", 2015};
     insertLastBuku(LB, createNodeBuku(input));
 
 }
@@ -217,7 +217,8 @@ void showAllPeminjam(listPeminjam LP){
             cout << "Nama       : " << node->info.nama << "\n";
             cout << "Telpon     : " << node->info.telpon << "\n";
             cout << "Alamat     : " << node->info.alamat << "\n";
-            cout << "Jumlah Buku: " << node->info.jumlahBukuYangDipinjam << "\n\n";
+            cout << "Jumlah Buku: " << node->info.jumlahBukuYangDipinjam << "\n";
+            cout << "Penilaian  : " << node->info.penilaian << "\n\n";
             node = node->next;
             i++;
             cout << "\n";
@@ -238,6 +239,7 @@ adrPeminjam searchPeminjam(listPeminjam LP, string idPeminjam){
 
 void dataPeminjamDummy(listPeminjam &LP){
     peminjam input;
+    
     input = {"1", "Jingga Jil", "Jl. Kenangan", "0812-1111-1111", 0};
     insertLastPeminjam(LP, createNodePeminjam(input));
 
@@ -295,6 +297,37 @@ void insertRelasi (listRelasi &LR, adrRelasi R){
     }
 }
 
+void rating (listRelasi &LP, string idBuku){
+    adrRelasi R = LP.first;
+    float total = 0;
+    int jumlah = 0;
+
+    // Cari buku
+    while (R != nullptr){
+        if (R->buku->info.idBuku == idBuku){
+            total += R->peminjam->info.penilaian;
+            jumlah++;
+        }
+        R = R->next;
+    }
+
+    // Jika buku tidak ada
+    if(jumlah == 0){
+        cout << "Buku tidak ditemukan.\n";
+        return;
+    }
+
+    // hitung rating
+    while (R != nullptr){
+        if (R->buku->info.idBuku == idBuku){
+            R->buku->info.rating = total / jumlah;
+            break;
+        }
+        R = R->next;
+    }
+    cout << "Rating berhasil ditambahkan!\n";
+}
+
 //=== FUNGSI & PROSEDUR TAMBAHAN ===
 void aksiPinjamBuku(listRelasi &LR, listPeminjam &LP, listBuku &LB, string idPeminjam, string idBuku){
     //Mencari subjek peminjam
@@ -315,6 +348,12 @@ void aksiPinjamBuku(listRelasi &LR, listPeminjam &LP, listBuku &LB, string idPem
     if(P->info.jumlahBukuYangDipinjam > 5){
         cout << "Tidak bisa melakukan peminjaman, anda melewati batas aturan\n";
         return;
+    } else {
+        int penilaian;
+        int jumlah = 0;
+        cout << "Masukkan rating buku:   " << penilaian;
+        jumlah++;
+        rating(penilaian);
     }
 
     //Hubungkan dengan node relasi
@@ -330,6 +369,7 @@ void inpuNPeminjam(listPeminjam &LP){
     // === INPUT ITERASI SEBANYAK n KALI ===
     peminjam input;
     string idPeminjam, nama, alamat, telpon;
+    float penilaian;
     int jumlahBukuYangDipinjam;
     int banyakPeminjam;
     cout << "Masukkan banyak peminjam : ";
@@ -342,9 +382,15 @@ void inpuNPeminjam(listPeminjam &LP){
         cout << "Alamat                     : "; cin >> alamat;
         cout << "Telpon                     : "; cin >> telpon;
         cout << "Jumlah Buku Yg Dipinjam    : "; cin >> jumlahBukuYangDipinjam; 
+        cout << "Penilaian                  : "; cin >> penilaian;
         cin.ignore(); //Membersihkan input numerik
         cout << "\n";
-        input = {idPeminjam, nama, alamat, telpon, jumlahBukuYangDipinjam};
+        input.idPeminjam = idPeminjam;
+        input.nama = nama;
+        input.alamat = alamat;
+        input.telpon = telpon;
+        input.jumlahBukuYangDipinjam = jumlahBukuYangDipinjam;
+        input.penilaian = penilaian;
         insertLastPeminjam(LP, createNodePeminjam(input));
 
     };
@@ -353,7 +399,8 @@ void inpuNPeminjam(listPeminjam &LP){
 void inputNBuku(listBuku &LB){
     // === INPUT ITERASI SEBANYAK n KALI ===
     buku input;
-    string idBuku, judulBuku, tahunTerbit;
+    string idBuku, judulBuku;
+    int tahunTerbit;
     float rating;
     int banyakBuku;
 
@@ -368,11 +415,15 @@ void inputNBuku(listBuku &LB){
         // cout << "Rating: "; cin >> rating;
         cin.ignore(); //Membersihkan input numerik
         cout << "\n";
-        input = {idBuku, judulBuku, tahunTerbit, rating};
+        input.idBuku = idBuku;
+        input.judulBuku = judulBuku;
+        input.tahunTerbit = tahunTerbit;
+        input.rating = rating;
         insertLastBuku(LB, createNodeBuku(input));
 
     };
 }
+
 int main(){
     listPeminjam LP;
     createListPeminjam(LP);
