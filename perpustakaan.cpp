@@ -98,34 +98,34 @@ adrBuku searchBuku(listBuku LB, string idBuku){
 
 void dataBukuDummy(listBuku &LB){
     buku input;
-    input = {"1", "Laut Berteriak", "2005", 5};
+    input = {"1", "Laut Berteriak", 2005, 5};
     insertLastBuku(LB, createNodeBuku(input));
 
-    input = {"2", "Bumi Manusia", "1980", 4.8};
+    input = {"2", "Bumi Manusia", 1980, 4.8};
     insertLastBuku(LB, createNodeBuku(input));
 
-    input = {"3", "Negeri Para Bedebah", "2012", 4.5};
+    input = {"3", "Negeri Para Bedebah", 2012, 4.5};
     insertLastBuku(LB, createNodeBuku(input));
 
-    input = {"4", "Laskar Pelangi", "2005", 4.7};
+    input = {"4", "Laskar Pelangi", 2005, 4.7};
     insertLastBuku(LB, createNodeBuku(input));
 
-    input = {"5", "Ayat-Ayat Cinta", "2004", 4.6};
+    input = {"5", "Ayat-Ayat Cinta", 2004, 4.6};
     insertLastBuku(LB, createNodeBuku(input));
 
-    input = {"6", "Pulang", "2015", 4.9};
+    input = {"6", "Pulang", 2015, 4.9};
     insertLastBuku(LB, createNodeBuku(input));
 
-    input = {"7", "Hujan", "2016", 4.8};
+    input = {"7", "Hujan", 2016, 4.8};
     insertLastBuku(LB, createNodeBuku(input));
 
-    input = {"8", "Mariposa", "2018", 4.4};
+    input = {"8", "Mariposa", 2018, 4.4};
     insertLastBuku(LB, createNodeBuku(input));
 
-    input = {"9", "Dilan 1990", "2014", 4.5};
+    input = {"9", "Dilan 1990", 2014, 4.5};
     insertLastBuku(LB, createNodeBuku(input));
 
-    input = {"10", "Critical Eleven", "2015", 4.3};
+    input = {"10", "Critical Eleven", 2015, 4.3};
     insertLastBuku(LB, createNodeBuku(input));
 
 }

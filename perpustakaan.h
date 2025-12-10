@@ -10,7 +10,7 @@ typedef struct buku infotypeBuku;
 struct buku{
     string idBuku;
     string judulBuku;
-    string tahunTerbit;
+    int tahunTerbit;
     float rating;
 };
 
