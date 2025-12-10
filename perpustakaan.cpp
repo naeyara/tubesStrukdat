@@ -326,7 +326,7 @@ void aksiPinjamBuku(listRelasi &LR, listPeminjam &LP, listBuku &LB, string idPem
 }
 
 
-void inpuNPeminjam(listPeminjam &LP){
+void inputNPeminjam(listPeminjam &LP){
     // === INPUT ITERASI SEBANYAK n KALI ===
     peminjam input;
     string idPeminjam, nama, alamat, telpon;
