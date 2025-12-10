@@ -74,7 +74,7 @@ void insertFirstPeminjam(listPeminjam &LP, adrPeminjam P);
 void deletePeminjam(listPeminjam &LP, string idPeminjam);
 void showAllPeminjam(listPeminjam LP);
 adrPeminjam searchPeminjam(listPeminjam LP, string idPeminjam);
-void inpuNPeminjam(listPeminjam &LP);
+void inputNPeminjam(listPeminjam &LP);
 
 void createListRelasi(listRelasi &LR);
 elemenRelasi* createNodeRelasi(adrBuku B, adrPeminjam P);
