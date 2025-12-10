@@ -296,6 +296,36 @@ void insertRelasi (listRelasi &LR, adrRelasi R){
 }
 
 //=== FUNGSI & PROSEDUR TAMBAHAN ===
+void aksiPinjamBuku(listRelasi &LR, listPeminjam &LP, listBuku &LB, string idPeminjam, string idBuku){
+    //Mencari subjek peminjam
+    adrPeminjam P = searchPeminjam(LP, idPeminjam);
+    if(P == nullptr){
+        cout << "Peminjam dengan ID " << idPeminjam << " tidak ditemukan!\n";
+        return;
+    }
+
+    //Mencari buku
+    adrBuku B = searchBuku(LB, idBuku);
+    if(B == nullptr){
+        cout << "Buku dengan ID " << idBuku << " tidak ditemukan!\n";
+        return;
+    }
+
+    //Cek jumlah peminjaman yang telah dilakukan
+    if(P->info.jumlahBukuYangDipinjam > 5){
+        cout << "Tidak bisa melakukan peminjaman, anda melewati batas aturan\n";
+        return;
+    }
+
+    //Hubungkan dengan node relasi
+    adrRelasi R = createNodeRelasi(B, P);
+    insertRelasi(LR, R);
+    P->info.jumlahBukuYangDipinjam++;
+
+
+}
+
+
 void inpuNPeminjam(listPeminjam &LP){
     // === INPUT ITERASI SEBANYAK n KALI ===
     peminjam input;
@@ -306,7 +336,7 @@ void inpuNPeminjam(listPeminjam &LP){
     cin >> banyakPeminjam;
 
     for (int i = 1; i <= banyakPeminjam; i++){
-        cout << "DATA PEMINJAM KE-" << i << "\n";
+        cout << ">> DATA PEMINJAM KE-" << i << "\n";
         cout << "ID                         : "; cin >> idPeminjam;
         cout << "Nama                       : "; cin >> nama;
         cout << "Alamat                     : "; cin >> alamat;
@@ -316,6 +346,30 @@ void inpuNPeminjam(listPeminjam &LP){
         cout << "\n";
         input = {idPeminjam, nama, alamat, telpon, jumlahBukuYangDipinjam};
         insertLastPeminjam(LP, createNodePeminjam(input));
+
+    };
+}
+
+void inputNBuku(listBuku &LB){
+    // === INPUT ITERASI SEBANYAK n KALI ===
+    buku input;
+    string idBuku, judulBuku, tahunTerbit;
+    float rating;
+    int banyakBuku;
+
+    cout << "Masukkan banyak buku : ";
+    cin >> banyakBuku;
+
+    for (int i = 1; i <= banyakBuku; i++){
+        cout << ">> DATA PEMINJAM KE-" << i << "\n";
+        cout << "ID Buku: "; cin >> idBuku;
+        cout << "Judul Buku: "; cin >> judulBuku;
+        cout << "Tahun Terbit: "; cin >> tahunTerbit;
+        // cout << "Rating: "; cin >> rating;
+        cin.ignore(); //Membersihkan input numerik
+        cout << "\n";
+        input = {idBuku, judulBuku, tahunTerbit, rating};
+        insertLastBuku(LB, createNodeBuku(input));
 
     };
 }
