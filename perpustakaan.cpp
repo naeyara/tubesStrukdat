@@ -249,6 +249,10 @@ void aksiPinjamBuku(listRelasi &LR, listPeminjam &LP, listBuku &LB, string idPem
     if(P->info.jumlahBukuYangDipinjam > 5){
         cout << "Tidak bisa melakukan peminjaman, anda melewati batas aturan\n";
         return;
+    }else{
+        int nilaiUser;
+
+    
     }
 
     //Hubungkan dengan node relasi
