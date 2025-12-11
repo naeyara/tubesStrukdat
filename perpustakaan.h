@@ -61,33 +61,37 @@ struct listRelasi{
 // === DAFTAR PROSEDUR & FUNGSI ===
 void createListBuku(listBuku &LB);
 adrBuku createNodeBuku(infotypeBuku Z);
-void insertFirstBuku(listBuku &LB, adrBuku P);
-void insertLastBuku(listBuku &LB, adrBuku P);
-void deleteBuku(listBuku &LP, string idBuku);
+void insertFirstBuku(listBuku &LB, adrBuku B);
+void insertLastBuku(listBuku &LB, adrBuku B);
+void deleteBuku(listBuku &LP, listRelasi &LR, string idBuku);
 void showAllBuku(listBuku LB);
 adrBuku searchBuku(listBuku LB, string idBuku);
 
-
 void createListPeminjam(listPeminjam &LP);
 adrPeminjam createNodePeminjam(infotypePeminjam X);
-void insertLastPeminjam(listPeminjam &LP, adrPeminjam P);
 void insertFirstPeminjam(listPeminjam &LP, adrPeminjam P);
-void deletePeminjam(listPeminjam &LP, string idPeminjam);
+void insertLastPeminjam(listPeminjam &LP, adrPeminjam P);
+void deletePeminjam(listPeminjam &LP, listRelasi &LR, string idPeminjam);
 void showAllPeminjam(listPeminjam LP);
 adrPeminjam searchPeminjam(listPeminjam LP, string idPeminjam);
-void inputNPeminjam(listPeminjam &LP);
 
 void createListRelasi(listRelasi &LR);
-elemenRelasi* createNodeRelasi(adrBuku B, adrPeminjam P);
+elemenRelasi* createNodeRelasi(adrBuku B, adrPeminjam P, float nilai);
 void insertRelasi (listRelasi &LR, adrRelasi R);
-void showAllRelasiBuku(listRelasi LR, string idBuku);
-void dataRelasiDummy(listRelasi &LR, listBuku LB, listPeminjam LP);
-
+void showAllRelasiBuku(listRelasi LR, listBuku LB, string idBuku);
 int countRelasiBuku(listRelasi LR, string idBuku);
-void inputNPeminjam(listPeminjam &LP);
-void inputNBuku(listBuku &LB);
+void deleteRelasiBuku(listRelasi &LR, string idBuku);
+void deleteRelasiPeminjam(listRelasi &LR, string idPeminjam);
+// void dataRelasiDummy(listRelasi &LR, listBuku LB, listPeminjam LP);
+
+void inputNFirstBuku(listBuku &LB);
+void inputNLastBuku(listBuku &LB);
+void inputNFirstPeminjam(listPeminjam &LP);
+void inputNLastPeminjam(listPeminjam &LP);
 void aksiPinjamBuku(listRelasi &LR, listPeminjam &LP, listBuku &LB, string idPeminjam, string idBuku);
-int showMenu();
 void rating(listRelasi &LR,listBuku LB, string idBuku);
+adrBuku favoriteBuku(listBuku &LB);
+void showFavoriteBuku(listBuku LB);
+void showMenu(listBuku &LB, listPeminjam &LP, listRelasi &LR);
 
 #endif
