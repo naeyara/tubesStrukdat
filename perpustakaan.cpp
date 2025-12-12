@@ -115,25 +115,37 @@ void insertLastBuku(listBuku &LB, adrBuku B){
 }
 
 void deleteBuku(listBuku &LB, listRelasi &LR, string idBuku){
-    if (LB.first == nullptr){
-        return;
+    //Cek apakah list kosong
+    if(LB.first == nullptr) {
+     cout << "List Peminjam Kosong!\n";
+     return;
     }
 
     deleteRelasiBuku(LR, idBuku);
+    //Membuat node pembantu
     adrBuku B = LB.first;
 
+    //Jika node yang akan dihapus merupakan first
     if(LB.first->info.idBuku == idBuku){
         LB.first = B->next;
         delete B;
         return;
-    } else {
-        adrBuku prev = nullptr;
-        while (prev != nullptr && B->info.idBuku != idBuku){
-            prev = B;
-            B = B->next;
-        }
-    prev->next = nullptr;
-    delete B;
+    }
+
+    //Jika node yang akan dihapus berada ditengah
+    adrBuku Prev = nullptr;
+    while (B != nullptr && B->info.idBuku != idBuku){
+        Prev = B;
+        B = B->next;
+    }
+
+    //Cek apakah P memiliki nilai
+    if (B == nullptr){
+        cout << "Buku dengan ID " << idBuku << " Tidak Ditemukan!\n";
+        return;
+    }else{
+        Prev->next = B->next;
+        delete B;
     }
 }
 
