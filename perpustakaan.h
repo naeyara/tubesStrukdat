@@ -90,8 +90,7 @@ void inputNFirstPeminjam(listPeminjam &LP);
 void inputNLastPeminjam(listPeminjam &LP);
 void aksiPinjamBuku(listRelasi &LR, listPeminjam &LP, listBuku &LB, string idPeminjam, string idBuku);
 void rating(listRelasi &LR,listBuku LB, string idBuku);
-adrBuku favoriteBuku(listBuku &LB);
-void showFavoriteBuku(listBuku LB);
+void favoriteBuku(listBuku LB);
 void showMenu(listBuku &LB, listPeminjam &LP, listRelasi &LR);
 
 #endif

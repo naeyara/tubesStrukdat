@@ -22,6 +22,7 @@ void showMenu(listBuku &LB, listPeminjam &LP, listRelasi &LR){
         cout << "[7] Aksi Peminjaman\n";
         cout << "[8] Delete Peminjam\n";
         cout << "[9] Delete Buku\n";
+        cout << "[10] Daftar Buku Favorite dan Tidak\n";
         cout << "[0] Keluar\n\n";
         cout << "Masukkan pilihan anda : ";
         cin >> inputUser; cin.ignore();
@@ -66,7 +67,7 @@ void showMenu(listBuku &LB, listPeminjam &LP, listRelasi &LR){
                 cout << "Buku berhasil dihapus!";
                 break;
             case 10:
-                showFavoriteBuku(LB);
+                favoriteBuku(LB);
                 break;
             case 11:
                 cout << "Terimakasih telah menggunakan sistem! :)\n";
@@ -654,33 +655,31 @@ void rating (listRelasi &LR, listBuku LB, string idBuku){
     buku->info.rating = finalRating;
 }
 
-adrBuku favoriteBuku(listBuku &LB){
+void favoriteBuku(listBuku LB){
     // Pengecekan list kosong
     if(LB.first == nullptr){
-        return nullptr;
+        return;
     }
 
     adrBuku favorite = LB.first;
-    adrBuku B = LB.first->next;
 
-    while(B != nullptr){
-        if(B->info.rating > favorite->info.rating){
-            favorite = B;
+    while(favorite != nullptr){
+        if(favorite->info.rating == 5){
+            cout << "=== BUKU FAVORITE ===\n\n";
+            cout << "ID Buku      : " << favorite->info.idBuku << endl;
+            cout << "Judul        : " << favorite->info.judulBuku << endl;
+            cout << "Tahun Terbit : " << favorite->info.tahunTerbit << endl;
+            cout << "Rating       : " << favorite->info.rating << endl;
+        } else if(favorite->info.rating == 0){
+            cout << "=== BUKU TIDAK FAVORITE ===\n";
+            cout << "ID Buku      : " << favorite->info.idBuku << endl;
+            cout << "Judul        : " << favorite->info.judulBuku << endl;
+            cout << "Tahun Terbit : " << favorite->info.tahunTerbit << endl;
+            cout << "Rating       : " << favorite->info.rating << endl;
+        }else{
+            cout << "Buku tidak ditemukan.\n";
         }
-        B = B->next;
+        favorite = favorite->next;
     }
-    return favorite;
-}
-
-void showFavoriteBuku(listBuku LB){
-    adrBuku favorite = favoriteBuku(LB);
-    if(favorite != nullptr){
-        cout << "=== BUKU FAVORITE ===\n";
-        cout << "ID Buku      : " << favorite->info.idBuku << endl;
-        cout << "Judul        : " << favorite->info.judulBuku << endl;
-        cout << "Tahun Terbit : " << favorite->info.tahunTerbit << endl;
-        cout << "Rating       : " << favorite->info.rating << endl;
-    }else{
-        cout << "Buku tidak ditemukan.\n";
-    }
+    return;
 }
