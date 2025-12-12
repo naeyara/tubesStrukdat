@@ -22,10 +22,10 @@ void showMenu(listBuku &LB, listPeminjam &LP, listRelasi &LR){
         cout << "[7] Aksi Peminjaman\n";
         cout << "[8] Delete Peminjam\n";
         cout << "[9] Delete Buku\n";
-        cout << "[10] Tampilkan Buku berdasar Peminjam\n";
-        cout << "[11] Daftar Buku Favorite dan Tidak\n";
-        cout << "[12] Daftar Buku yang dipinjam\n";
-        cout << "[13] Daftar Peminjam yang meminjam buku\n";
+        cout << "[10] Tampilkan Semua Data Peminjaman\n";
+        cout << "[11] Tampilkan Daftar Buku Favorit dan Tidak\n";
+        cout << "[12] Tampilkan Peminjam Buku Bedasarkan ID Buku\n";
+        cout << "[13] Tampilkan Buku yang Dipinjam Bedasarkan ID Peminjam\n";
         cout << "[14] Keluar\n\n";
         cout << "Masukkan pilihan anda : ";
         cin >> inputUser; cin.ignore();
@@ -84,7 +84,12 @@ void showMenu(listBuku &LB, listPeminjam &LP, listRelasi &LR){
                 showBukuBasedPeminjam(LR, idPeminjam);
                 break;
             case 14:
-                cout << "Terimakasih telah menggunakan sistem! :)\n";
+                cout << "Terimakasih telah menggunakan aplikasi kami! :)\n";
+                cout << "© 2025 Made with Love Nayya & Jingga ❤︎\n";
+                break;
+            default:
+                cout << "Terimakasih telah menggunakan aplikasi kami! :)\n";
+                cout << "© 2025 Made with Love Nayya & Jingga ❤︎\n";
                 break;
         }
     } while (inputUser != 0);
@@ -131,7 +136,7 @@ void insertLastBuku(listBuku &LB, adrBuku B){
 void deleteBuku(listBuku &LB, listRelasi &LR, string idBuku){
     //Cek apakah list kosong
     if(LB.first == nullptr) {
-     cout << "List Peminjam Kosong!\n";
+     cout << "List Buku Kosong!\n";
      return;
     }
 
@@ -446,7 +451,7 @@ void dataPeminjamDummy(listPeminjam &LP){
     input = {"1", "Jingga Jil", "Jl. Kenangan", "0812-1111-1111", 0};
     insertLastPeminjam(LP, createNodePeminjam(input));
 
-    input = {"2", "Bambang", "Jl. Jambu", "0812-2222-2222", 0};
+    input = {"2", "Nayya", "Jl. Jambu", "0812-2222-2222", 0};
     insertLastPeminjam(LP, createNodePeminjam(input));
 
     input = {"3", "Sendy", "Jl. Nanas", "0812-3333-3333", 0};
@@ -514,7 +519,6 @@ void dataRelasiDummy(listRelasi &LR, listBuku LB, listPeminjam LP){
 
 //=== FUNGSI & PROSEDUR INPUT ===
 void inputNFirstBuku(listBuku &LB){
-    // === INPUT ITERASI SEBANYAK n KALI ===
     buku input;
     string idBuku, judulBuku;
     int tahunTerbit;
@@ -540,7 +544,6 @@ void inputNFirstBuku(listBuku &LB){
 }
 
 void inputNLastBuku(listBuku &LB){
-    // === INPUT ITERASI SEBANYAK n KALI ===
     buku input;
     string idBuku, judulBuku;
     int tahunTerbit;
@@ -566,11 +569,11 @@ void inputNLastBuku(listBuku &LB){
 }
 
 void inputNFirstPeminjam(listPeminjam &LP){
-    // === INPUT ITERASI SEBANYAK n KALI ===
     peminjam input;
     string idPeminjam, nama, alamat, telpon;
     int jumlahBukuYangDipinjam;
     int banyakPeminjam;
+
     cout << "Masukkan banyak peminjam : ";
     cin >> banyakPeminjam; cin.ignore();
 
@@ -587,16 +590,15 @@ void inputNFirstPeminjam(listPeminjam &LP){
         input.telpon = telpon;
         input.jumlahBukuYangDipinjam = 0;
         insertFirstPeminjam(LP, createNodePeminjam(input));
-
     };
 }
 
 void inputNLastPeminjam(listPeminjam &LP){
-    // === INPUT ITERASI SEBANYAK n KALI ===
     peminjam input;
     string idPeminjam, nama, alamat, telpon;
     int jumlahBukuYangDipinjam;
     int banyakPeminjam;
+
     cout << "Masukkan banyak peminjam : ";
     cin >> banyakPeminjam; cin.ignore();
 
@@ -613,7 +615,6 @@ void inputNLastPeminjam(listPeminjam &LP){
         input.telpon = telpon;
         input.jumlahBukuYangDipinjam = 0;
         insertLastPeminjam(LP, createNodePeminjam(input));
-
     };
 }
 
@@ -692,13 +693,13 @@ void favoriteBuku(listBuku LB){
 
     while(favorite != nullptr){
         if(favorite->info.rating == 5){
-            cout << "=== BUKU FAVORITE ===\n\n";
+            cout << "=== ★★★★★ BUKU FAVORITE ★★★★★ ===\n\n";
             cout << "ID Buku      : " << favorite->info.idBuku << endl;
             cout << "Judul        : " << favorite->info.judulBuku << endl;
             cout << "Tahun Terbit : " << favorite->info.tahunTerbit << endl;
             cout << "Rating       : " << favorite->info.rating << endl;
         } else if(favorite->info.rating == 0){
-            cout << "=== BUKU TIDAK FAVORITE ===\n";
+            cout << "=== ☆☆☆☆☆ BUKU TIDAK FAVORITE ☆☆☆☆☆ ===\n";
             cout << "ID Buku      : " << favorite->info.idBuku << endl;
             cout << "Judul        : " << favorite->info.judulBuku << endl;
             cout << "Tahun Terbit : " << favorite->info.tahunTerbit << endl;
@@ -739,7 +740,7 @@ void showAllData(listBuku LB, listRelasi LR){
             R = R->next;
         }
         if(!adaPeminjam){
-            cout << "Tidak ada peminjam\n";
+            cout << "Tidak ada aksi peminjaman\n";
         }
         NBuku++;
         B = B->next;
