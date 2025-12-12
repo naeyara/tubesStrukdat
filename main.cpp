@@ -14,6 +14,7 @@ int main(){
 
 
     dataBukuDummy(LB);
+    dataPeminjamDummy(LP);
     showMenu(LB, LP, LR);
 
     //=== TESTING DG DATA DUMMY ===

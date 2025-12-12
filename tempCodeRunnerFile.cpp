@@ -1,12 +1,1 @@
-    input = {"1", "Jingga Jil", "Jl. Kenangan", "0812-XXXX-XXX", 4};
-    insertLastPeminjam(LP, createNodePeminjam(input));
-    input = {"2", "Bambang", "Jl. Jambu", "0812-XXXX-XXX", 1};
-    insertLastPeminjam(LP, createNodePeminjam(input));
-    input = {"3", "Sendy", "Jl. Nanas", "0812-XXXX-XXX", 0};
-    insertLastPeminjam(LP, createNodePeminjam(input));
-    input = {"4", "Jil", "Jl. Apel", "0812-XXXX-XXX", 0};
-    insertLastPeminjam(LP, createNodePeminjam(input));
-    input = {"5", "Ridwan Kamil", "Jl. Koperasi", "0812-XXXX-XXX", 1};
-    insertLastPeminjam(LP, createNodePeminjam(input));
-    input = {"6", "Langgachan", "Jl. Papaya", "0812-XXXX-XXX", 0};
-    insertLastPeminjam(LP, createNodePeminjam(input));
+rating

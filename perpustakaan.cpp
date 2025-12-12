@@ -22,6 +22,7 @@ void showMenu(listBuku &LB, listPeminjam &LP, listRelasi &LR){
         cout << "[7] Aksi Peminjaman\n";
         cout << "[8] Delete Peminjam\n";
         cout << "[9] Delete Buku\n";
+        cout << "[10] Show Buku Favorit\n";
         cout << "[0] Keluar\n\n";
         cout << "Masukkan pilihan anda : ";
         cin >> inputUser; cin.ignore();
@@ -202,7 +203,7 @@ void dataBukuDummy(listBuku &LB){
     input = {"10", "Critical Eleven", 2015};
     insertLastBuku(LB, createNodeBuku(input));
 
-    cout << "Data Buku Dummy Berhasil diinputkan\n";
+    cout << "Data Buku Dummy Berhasil Diinputkan\n";
 }
 
 //=== FUNGSI & PROSEDUR (PEMINJAM)
@@ -446,6 +447,7 @@ void dataPeminjamDummy(listPeminjam &LP){
     input = {"10", "Caca Afriani", "Jl. Anggur", "0812-0000-0000", 0};
     insertLastPeminjam(LP, createNodePeminjam(input));
 
+    cout <<"Data Peminjam Dummy Berhasil Diinputkan\n";
 }
 
 void dataRelasiDummy(listRelasi &LR, listBuku LB, listPeminjam LP){
@@ -682,5 +684,78 @@ void showFavoriteBuku(listBuku LB){
         cout << "Rating       : " << favorite->info.rating << endl;
     }else{
         cout << "Buku tidak ditemukan.\n";
+    }
+}
+
+
+void showAllData(listBuku LB, listRelasi LR){
+    bool adaPeminjam = false;
+    int NBuku, NPeminjam = 1;
+    adrBuku B = LB.first;
+    adrRelasi R = LR.first;
+
+    while(B != nullptr){
+        // Cetak Buku
+        NBuku = 1;
+        cout << NBuku << ". ID Buku        :" << B->info.idBuku << "\n";
+        cout << "Judul Buku     :" << B->info.judulBuku << "\n";
+        cout << "Tahun Terbit   :" << B->info.tahunTerbit << "\n";
+        cout << "Rating         :" << B->info.rating << "\n";
+        cout << "Dipinjam oleh  :\n";
+
+        while(R != nullptr){
+            //Cetak isi Peminjam
+            adaPeminjam = true;
+            if(R->buku == B){
+                if(R->peminjam != nullptr){
+                    cout << NPeminjam << "." <<  R->peminjam->info.nama << "\n";
+                    NPeminjam++;
+                }
+            }
+            R = R->next;
+        }
+        if(!adaPeminjam){
+            cout << "Tidak ada peminjam\n";
+        }
+        NBuku++;
+        B = B->next;
+    }
+
+}
+
+void showBukuBasedPeminjam(listBuku LB, listRelasi LR, string idPeminjam){
+    bool adaBuku = false;
+    int NBuku = 1;
+    adrBuku B = LB.first;
+    adrRelasi R = LR.first;
+
+    while(R != nullptr){
+        if(R->peminjam != nullptr && R->peminjam->info.idPeminjam == idPeminjam){
+            adaBuku = true;
+            cout << NBuku << ". " << R->buku->info.judulBuku << endl;
+            NBuku++;
+        }
+        R = R->next;
+    }
+    if(!adaBuku){
+        cout << "Tidak ada buku yang dipinjam\n";
+    }
+}
+void showPeminjamBasedBuku(listBuku LB, listRelasi LR, string idBuku){
+    bool adaPeminjam = false;
+    int NPeminjam = 1;
+    adrBuku B = LB.first;
+    adrRelasi R = LR.first;
+
+    while(R != nullptr){
+        if(R->buku != nullptr && R->buku->info.idBuku == idBuku){
+            adaPeminjam= true;
+            cout << NPeminjam << ". " << R->peminjam->info.nama << endl;
+            NPeminjam++;
+        }
+        R = R->next;
+    }
+    if(!adaPeminjam){
+        cout << "Tidak ada buku yang dipinjam\n";
     }
 }

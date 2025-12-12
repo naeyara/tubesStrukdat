@@ -94,4 +94,8 @@ adrBuku favoriteBuku(listBuku &LB);
 void showFavoriteBuku(listBuku LB);
 void showMenu(listBuku &LB, listPeminjam &LP, listRelasi &LR);
 
+void showAllData(listBuku LB, listPeminjam LP, listRelasi LR);
+void showBukuBasedPeminjam(listBuku LB, listPeminjam LP, listRelasi LR);
+void showPeminjamBasedBuku(listBuku LB, listPeminjam LP, listRelasi LR);
+
 #endif
