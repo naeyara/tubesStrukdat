@@ -22,15 +22,11 @@ void showMenu(listBuku &LB, listPeminjam &LP, listRelasi &LR){
         cout << "[7] Aksi Peminjaman\n";
         cout << "[8] Delete Peminjam\n";
         cout << "[9] Delete Buku\n";
-<<<<<<< HEAD
-        cout << "[10] Show Buku Favorit\n";
-        cout << "[0] Keluar\n\n";
-=======
-        cout << "[10] Daftar Buku Favorite dan Tidak\n";
-        cout << "[11] Daftar Buku yang dipinjam\n";
-        cout << "[12] Daftar Peminjam yang meminjam buku\n";
-        cout << "[13] Keluar\n\n";
->>>>>>> ed0b3598870b13d6f22f0c29a8bc8837926ee3a8
+        cout << "[10] Tampilkan Buku berdasar Peminjam\n";
+        cout << "[11] Daftar Buku Favorite dan Tidak\n";
+        cout << "[12] Daftar Buku yang dipinjam\n";
+        cout << "[13] Daftar Peminjam yang meminjam buku\n";
+        cout << "[14] Keluar\n\n";
         cout << "Masukkan pilihan anda : ";
         cin >> inputUser; cin.ignore();
         
@@ -65,22 +61,29 @@ void showMenu(listBuku &LB, listPeminjam &LP, listRelasi &LR){
                 cout << "Input ID Peminjam: ";
                 cin >> idPeminjam; cin.ignore();
                 deletePeminjam(LP, LR, idPeminjam);
-                cout << "Peminjam berhasil dihapus!";
                 break;
             case 9:
                 cout << "Input ID Buku: ";
                 cin >> idBuku; cin.ignore();
                 deleteBuku(LB, LR, idBuku);
-                cout << "Buku berhasil dihapus!";
                 break;
             case 10:
-                favoriteBuku(LB);
+                showAllData(LB, LR);
                 break;
             case 11:
+                favoriteBuku(LB);
                 break;
             case 12:
+                cout << "Input ID Buku: ";
+                cin >> idBuku; cin.ignore();
+                showPeminjamBasedBuku(LR, idBuku);
                 break;
             case 13:
+                cout << "Input ID Peminjam: ";
+                cin >> idPeminjam; cin.ignore();
+                showBukuBasedPeminjam(LR, idPeminjam);
+                break;
+            case 14:
                 cout << "Terimakasih telah menggunakan sistem! :)\n";
                 break;
         }
@@ -744,10 +747,9 @@ void showAllData(listBuku LB, listRelasi LR){
 
 }
 
-void showBukuBasedPeminjam(listBuku LB, listRelasi LR, string idPeminjam){
+void showBukuBasedPeminjam(listRelasi LR, string idPeminjam){
     bool adaBuku = false;
     int NBuku = 1;
-    adrBuku B = LB.first;
     adrRelasi R = LR.first;
 
     while(R != nullptr){
@@ -762,10 +764,9 @@ void showBukuBasedPeminjam(listBuku LB, listRelasi LR, string idPeminjam){
         cout << "Tidak ada buku yang dipinjam\n";
     }
 }
-void showPeminjamBasedBuku(listBuku LB, listRelasi LR, string idBuku){
+void showPeminjamBasedBuku(listRelasi LR, string idBuku){
     bool adaPeminjam = false;
     int NPeminjam = 1;
-    adrBuku B = LB.first;
     adrRelasi R = LR.first;
 
     while(R != nullptr){

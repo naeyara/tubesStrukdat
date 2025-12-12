@@ -93,8 +93,8 @@ void rating(listRelasi &LR,listBuku LB, string idBuku);
 void favoriteBuku(listBuku LB);
 void showMenu(listBuku &LB, listPeminjam &LP, listRelasi &LR);
 
-void showAllData(listBuku LB, listPeminjam LP, listRelasi LR);
-void showBukuBasedPeminjam(listBuku LB, listPeminjam LP, listRelasi LR);
-void showPeminjamBasedBuku(listBuku LB, listPeminjam LP, listRelasi LR);
+void showAllData(listBuku LB, listRelasi LR);
+void showPeminjamBasedBuku(listRelasi LR, string idBuku);
+void showBukuBasedPeminjam(listRelasi LR, string idPeminjam);
 
 #endif
