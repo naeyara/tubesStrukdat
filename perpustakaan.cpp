@@ -23,7 +23,9 @@ void showMenu(listBuku &LB, listPeminjam &LP, listRelasi &LR){
         cout << "[8] Delete Peminjam\n";
         cout << "[9] Delete Buku\n";
         cout << "[10] Daftar Buku Favorite dan Tidak\n";
-        cout << "[0] Keluar\n\n";
+        cout << "[11] Daftar Buku yang dipinjam\n";
+        cout << "[12] Daftar Peminjam yang meminjam buku\n";
+        cout << "[13] Keluar\n\n";
         cout << "Masukkan pilihan anda : ";
         cin >> inputUser; cin.ignore();
         
@@ -70,6 +72,10 @@ void showMenu(listBuku &LB, listPeminjam &LP, listRelasi &LR){
                 favoriteBuku(LB);
                 break;
             case 11:
+                break;
+            case 12:
+                break;
+            case 13:
                 cout << "Terimakasih telah menggunakan sistem! :)\n";
                 break;
         }
