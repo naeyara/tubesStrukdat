@@ -3,7 +3,7 @@
 #include <cstring>
 using namespace std;
 
-//=== FUNGSI MAIN
+//=== FUNGSI & PROSEDUR PADA MAIN
 void showMenu(listBuku &LB, listPeminjam &LP, listRelasi &LR){
     int inputUser;
     string idBuku, idPeminjam;
@@ -137,7 +137,7 @@ void deleteBuku(listBuku &LB, listRelasi &LR, string idBuku){
 }
 
 void showAllBuku(listBuku LB){
-    cout << "=== Daftar Buku Perpustakaan ===\n";
+    cout << "\n=== Daftar Buku Perpustakaan ===\n";
 
     if (LB.first == nullptr){
         cout << "Daftar Buku Kosong." << endl;
@@ -170,39 +170,40 @@ adrBuku searchBuku(listBuku LB, string idBuku){
     return nullptr;
 }
 
-// void dataBukuDummy(listBuku &LB){
-//     buku input;
-//     input = {"1", "Laut Berteriak", 2005};
-//     insertLastBuku(LB, createNodeBuku(input));
+void dataBukuDummy(listBuku &LB){
+    buku input;
+    input = {"1", "Laut Berteriak", 2005};
+    insertLastBuku(LB, createNodeBuku(input));
 
-//     input = {"2", "Bumi Manusia", 1980};
-//     insertLastBuku(LB, createNodeBuku(input));
+    input = {"2", "Bumi Manusia", 1980};
+    insertLastBuku(LB, createNodeBuku(input));
 
-//     input = {"3", "Negeri Para Bedebah", 2012};
-//     insertLastBuku(LB, createNodeBuku(input));
+    input = {"3", "Negeri Para Bedebah", 2012};
+    insertLastBuku(LB, createNodeBuku(input));
 
-//     input = {"4", "Laskar Pelangi", 2005};
-//     insertLastBuku(LB, createNodeBuku(input));
+    input = {"4", "Laskar Pelangi", 2005};
+    insertLastBuku(LB, createNodeBuku(input));
 
-//     input = {"5", "Ayat-Ayat Cinta", 2004};
-//     insertLastBuku(LB, createNodeBuku(input));
+    input = {"5", "Ayat-Ayat Cinta", 2004};
+    insertLastBuku(LB, createNodeBuku(input));
 
-//     input = {"6", "Pulang", 2015};
-//     insertLastBuku(LB, createNodeBuku(input));
+    input = {"6", "Pulang", 2015};
+    insertLastBuku(LB, createNodeBuku(input));
 
-//     input = {"7", "Hujan", 2016};
-//     insertLastBuku(LB, createNodeBuku(input));
+    input = {"7", "Hujan", 2016};
+    insertLastBuku(LB, createNodeBuku(input));
 
-//     input = {"8", "Mariposa", 2018};
-//     insertLastBuku(LB, createNodeBuku(input));
+    input = {"8", "Mariposa", 2018};
+    insertLastBuku(LB, createNodeBuku(input));
 
-//     input = {"9", "Dilan 1990", 2014};
-//     insertLastBuku(LB, createNodeBuku(input));
+    input = {"9", "Dilan 1990", 2014};
+    insertLastBuku(LB, createNodeBuku(input));
 
-//     input = {"10", "Critical Eleven", 2015};
-//     insertLastBuku(LB, createNodeBuku(input));
+    input = {"10", "Critical Eleven", 2015};
+    insertLastBuku(LB, createNodeBuku(input));
 
-// }
+    cout << "Data Buku Dummy Berhasil diinputkan\n";
+}
 
 //=== FUNGSI & PROSEDUR (PEMINJAM)
 void createListPeminjam(listPeminjam &LP){
@@ -412,78 +413,78 @@ void deleteRelasiPeminjam(listRelasi &LR, string idPeminjam){
     }
 }
 
-// void dataPeminjamDummy(listPeminjam &LP){
-//     peminjam input;
+void dataPeminjamDummy(listPeminjam &LP){
+    peminjam input;
     
-//     input = {"1", "Jingga Jil", "Jl. Kenangan", "0812-1111-1111", 0};
-//     insertLastPeminjam(LP, createNodePeminjam(input));
+    input = {"1", "Jingga Jil", "Jl. Kenangan", "0812-1111-1111", 0};
+    insertLastPeminjam(LP, createNodePeminjam(input));
 
-//     input = {"2", "Bambang", "Jl. Jambu", "0812-2222-2222", 0};
-//     insertLastPeminjam(LP, createNodePeminjam(input));
+    input = {"2", "Bambang", "Jl. Jambu", "0812-2222-2222", 0};
+    insertLastPeminjam(LP, createNodePeminjam(input));
 
-//     input = {"3", "Sendy", "Jl. Nanas", "0812-3333-3333", 0};
-//     insertLastPeminjam(LP, createNodePeminjam(input));
+    input = {"3", "Sendy", "Jl. Nanas", "0812-3333-3333", 0};
+    insertLastPeminjam(LP, createNodePeminjam(input));
 
-//     input = {"4", "Rizki", "Jl. Melon", "0812-4444-4444", 0};
-//     insertLastPeminjam(LP, createNodePeminjam(input));
+    input = {"4", "Rizki", "Jl. Melon", "0812-4444-4444", 0};
+    insertLastPeminjam(LP, createNodePeminjam(input));
 
-//     input = {"5", "Sari Putri", "Jl. Stroberi", "0812-5555-5555", 0};
-//     insertLastPeminjam(LP, createNodePeminjam(input));
+    input = {"5", "Sari Putri", "Jl. Stroberi", "0812-5555-5555", 0};
+    insertLastPeminjam(LP, createNodePeminjam(input));
 
-//     input = {"6", "Langgachan", "Jl. Papaya", "0812-6666-6666", 0};
-//     insertLastPeminjam(LP, createNodePeminjam(input));
+    input = {"6", "Langgachan", "Jl. Papaya", "0812-6666-6666", 0};
+    insertLastPeminjam(LP, createNodePeminjam(input));
 
-//     input = {"7", "Gilbert", "Jl. Durian", "0812-7777-7777", 0};
-//     insertLastPeminjam(LP, createNodePeminjam(input));
+    input = {"7", "Gilbert", "Jl. Durian", "0812-7777-7777", 0};
+    insertLastPeminjam(LP, createNodePeminjam(input));
 
-//     input = {"8", "Anastasya", "Jl. Lemon", "0812-8888-8888", 0};
-//     insertLastPeminjam(LP, createNodePeminjam(input));
+    input = {"8", "Anastasya", "Jl. Lemon", "0812-8888-8888", 0};
+    insertLastPeminjam(LP, createNodePeminjam(input));
 
-//     input = {"9", "Putra Perdana", "Jl. Sawo", "0812-9999-9999", 0};
-//     insertLastPeminjam(LP, createNodePeminjam(input));
+    input = {"9", "Putra Perdana", "Jl. Sawo", "0812-9999-9999", 0};
+    insertLastPeminjam(LP, createNodePeminjam(input));
 
-//     input = {"10", "Caca Afriani", "Jl. Anggur", "0812-0000-0000", 0};
-//     insertLastPeminjam(LP, createNodePeminjam(input));
+    input = {"10", "Caca Afriani", "Jl. Anggur", "0812-0000-0000", 0};
+    insertLastPeminjam(LP, createNodePeminjam(input));
 
-// }
+}
 
-// void dataRelasiDummy(listRelasi &LR, listBuku LB, listPeminjam LP){
-//     // Ambil address buku
-//     adrBuku B1 = searchBuku(LB, "1");
-//     adrBuku B2 = searchBuku(LB, "2");
-//     adrBuku B3 = searchBuku(LB, "3");
-//     adrBuku B4 = searchBuku(LB, "4");
+void dataRelasiDummy(listRelasi &LR, listBuku LB, listPeminjam LP){
+    // Ambil address buku
+    adrBuku B1 = searchBuku(LB, "1");
+    adrBuku B2 = searchBuku(LB, "2");
+    adrBuku B3 = searchBuku(LB, "3");
+    adrBuku B4 = searchBuku(LB, "4");
 
-//     // Ambil address peminjam
-//     adrPeminjam P1 = searchPeminjam(LP, "1");
-//     adrPeminjam P2 = searchPeminjam(LP, "2");
-//     adrPeminjam P3 = searchPeminjam(LP, "3");
-//     adrPeminjam P4 = searchPeminjam(LP, "4");
+    // Ambil address peminjam
+    adrPeminjam P1 = searchPeminjam(LP, "1");
+    adrPeminjam P2 = searchPeminjam(LP, "2");
+    adrPeminjam P3 = searchPeminjam(LP, "3");
+    adrPeminjam P4 = searchPeminjam(LP, "4");
 
-//     //Pinjam B1
-//     adrRelasi R1 = createNodeRelasi(B1, P1);
-//     insertRelasi(LR, R1);
-//     adrRelasi R2 = createNodeRelasi(B1, P2);
-//     insertRelasi(LR, R2);
+    //Pinjam B1
+    adrRelasi R1 = createNodeRelasi(B1, P1, 0);
+    insertRelasi(LR, R1);
+    adrRelasi R2 = createNodeRelasi(B1, P2, 0);
+    insertRelasi(LR, R2);
 
-//     //Pinjam B2
-//     adrRelasi R3 = createNodeRelasi(B2, P1);
-//     insertRelasi(LR, R3);
+    //Pinjam B2
+    adrRelasi R3 = createNodeRelasi(B2, P1, 0);
+    insertRelasi(LR, R3);
 
-//     //Pinjam B3
-//     adrRelasi R4 = createNodeRelasi(B3, P3);
-//     insertRelasi(LR, R4);
-//     adrRelasi R5 = createNodeRelasi(B3, P4);
-//     insertRelasi(LR, R5);
+    //Pinjam B3
+    adrRelasi R4 = createNodeRelasi(B3, P3, 0);
+    insertRelasi(LR, R4);
+    adrRelasi R5 = createNodeRelasi(B3, P4, 0);
+    insertRelasi(LR, R5);
 
-//     //Pinjam B4
-//     adrRelasi R6 = createNodeRelasi(B4, P3);
-//     insertRelasi(LR, R6);
-//     adrRelasi R7 = createNodeRelasi(B4, P4);
-//     insertRelasi(LR, R7);
-// }
+    //Pinjam B4
+    adrRelasi R6 = createNodeRelasi(B4, P3, 0);
+    insertRelasi(LR, R6);
+    adrRelasi R7 = createNodeRelasi(B4, P4, 0);
+    insertRelasi(LR, R7);
+}
 
-//=== FUNGSI & PROSEDUR TAMBAHAN ===
+//=== FUNGSI & PROSEDUR INPUT ===
 void inputNFirstBuku(listBuku &LB){
     // === INPUT ITERASI SEBANYAK n KALI ===
     buku input;
@@ -588,6 +589,7 @@ void inputNLastPeminjam(listPeminjam &LP){
     };
 }
 
+// === FUNGSI & PROSEDUR AKSI 
 void aksiPinjamBuku(listRelasi &LR, listPeminjam &LP, listBuku &LB, string idPeminjam, string idBuku){
     //Mencari subjek peminjam
     adrPeminjam P = searchPeminjam(LP, idPeminjam);
@@ -681,42 +683,4 @@ void showFavoriteBuku(listBuku LB){
     }else{
         cout << "Buku tidak ditemukan.\n";
     }
-}
-
-int main(){
-    listPeminjam LP;
-    createListPeminjam(LP);
-
-    listBuku LB;
-    createListBuku(LB);
-
-    listRelasi LR;
-    createListRelasi(LR);
-
-    showMenu(LB, LP, LR);
-
-    // dataBukuDummy(LB);
-    // dataPeminjamDummy(LP);
-
-    // showAllPeminjam(LP);
-    // showAllBuku(LB);
-
-    // dataRelasiDummy(LR, LB, LP);
-    // showAllRelasiBuku(LR, "1");
-    // showAllRelasiBuku(LR, "2");
-    // showAllRelasiBuku(LR, "3");
-    // showAllRelasiBuku(LR, "4");
-    // showAllRelasiBuku(LR, "5");
-
-    // inputNBuku(LB);
-    // inputNPeminjam(LP);
-
-    // string inputIdBuku, inputIdPeminjam;
-    // cout << "Input ID Buku: ";
-    // cin >> inputIdBuku;
-    // cout << "Input ID Peminjam: ";
-    // cin >> inputIdPeminjam;
-
-    // aksiPinjamBuku(LR,LP,LB, inputIdPeminjam, inputIdBuku);
-    // showAllRelasiBuku(LR, LB, inputIdBuku);
 }

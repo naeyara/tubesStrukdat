@@ -82,7 +82,7 @@ void showAllRelasiBuku(listRelasi LR, listBuku LB, string idBuku);
 int countRelasiBuku(listRelasi LR, string idBuku);
 void deleteRelasiBuku(listRelasi &LR, string idBuku);
 void deleteRelasiPeminjam(listRelasi &LR, string idPeminjam);
-// void dataRelasiDummy(listRelasi &LR, listBuku LB, listPeminjam LP);
+void dataRelasiDummy(listRelasi &LR, listBuku LB, listPeminjam LP);
 
 void inputNFirstBuku(listBuku &LB);
 void inputNLastBuku(listBuku &LB);
