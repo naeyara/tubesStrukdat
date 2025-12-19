@@ -85,11 +85,11 @@ void showMenu(listBuku &LB, listPeminjam &LP, listRelasi &LR){
                 break;
             case 14:
                 cout << "Terimakasih telah menggunakan aplikasi kami! :)\n";
-                cout << "© 2025 Made with Love Nayya & Jingga ❤︎\n";
+                cout << "Made with Love Nayya & Jingga <3\n";
                 break;
             default:
                 cout << "Terimakasih telah menggunakan aplikasi kami! :)\n";
-                cout << "© 2025 Made with Love Nayya & Jingga ❤︎\n";
+                cout << "Made with Love Nayya & Jingga <3\n";
                 break;
         }
     } while (inputUser != 0);
