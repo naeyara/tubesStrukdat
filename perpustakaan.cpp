@@ -96,6 +96,7 @@ void createListBuku(listBuku &LB){
 }
 
 adrBuku createNodeBuku(infotypeBuku Z){
+    // membuat node kosong
     adrBuku node = new elemenBuku;
     node->info = Z;
     node->next = nullptr;
@@ -112,19 +113,25 @@ void insertFirstBuku(listBuku &LB, adrBuku B){
 }
 
 void insertLastBuku(listBuku &LB, adrBuku B){
+    // jika node b kosong maka return (gagal)
     if (B == nullptr){
         return;
     }
 
+    // jika List kosong maka menjadikan B elemen pertama 
     if(LB.first == nullptr){
         LB.first = B;
     } else {
+        // membuat node pembantu
         adrBuku R = LB.first;
+        // perulangan jika setelah R tidak kosong akan berpindah ke sebelah
         while (R->next != nullptr){
             R = R->next;
         }
+        // sampai pada akhir setelah R adalah kosong, menjadikan setelah R adalah B
         R->next = B;
     }
+    //karena B merupakan node terakhir, maka nextnya null
     B->next = nullptr;
 }
 
@@ -153,7 +160,7 @@ void deleteBuku(listBuku &LB, listRelasi &LR, string idBuku){
         B = B->next;
     }
 
-    //Cek apakah P memiliki nilai
+    //Cek apakah B memiliki nilai
     if (B == nullptr){
         cout << "Buku dengan ID " << idBuku << " Tidak Ditemukan!\n";
         return;
