@@ -417,15 +417,21 @@ int countRelasiBuku(listRelasi LR, string idBuku){
 
 void deleteRelasiBuku(listRelasi &LR, string idBuku){
     adrRelasi R = LR.first;
+    adrRelasi prev = nullptr;
+
     while(R != nullptr){
         if(R->buku->info.idBuku == idBuku){
-            adrRelasi prev = nullptr;
+            // jika node pertama maka first bergeser ke next
             if(prev == nullptr){
                 LR.first = R->next;
             }else{
                 prev->next = R->next;
             }
             adrRelasi temp = R;
+            R = R->next;
+            delete temp;
+        } else{
+            prev = R;
             R = R->next;
         }
     } 
@@ -437,6 +443,8 @@ void deleteRelasiPeminjam(listRelasi &LR, string idPeminjam){
 
     while(R != nullptr){
         if(R->peminjam->info.idPeminjam == idPeminjam){
+
+            //Jika node pertama maka first bergeser ke next
             if(prev == nullptr){
                 LR.first = R->next;
             }else{
@@ -700,19 +708,17 @@ void favoriteBuku(listBuku LB){
 
     while(favorite != nullptr){
         if(favorite->info.rating == 5){
-            cout << "=== ★★★★★ BUKU FAVORITE ★★★★★ ===\n\n";
+            cout << "=== BUKU FAVORITE ===\n";
             cout << "ID Buku      : " << favorite->info.idBuku << endl;
             cout << "Judul        : " << favorite->info.judulBuku << endl;
             cout << "Tahun Terbit : " << favorite->info.tahunTerbit << endl;
             cout << "Rating       : " << favorite->info.rating << endl;
         } else if(favorite->info.rating == 0){
-            cout << "=== ☆☆☆☆☆ BUKU TIDAK FAVORITE ☆☆☆☆☆ ===\n";
+            cout << "=== BUKU TIDAK FAVORITE ===\n";
             cout << "ID Buku      : " << favorite->info.idBuku << endl;
             cout << "Judul        : " << favorite->info.judulBuku << endl;
             cout << "Tahun Terbit : " << favorite->info.tahunTerbit << endl;
             cout << "Rating       : " << favorite->info.rating << endl;
-        }else{
-            cout << "Buku tidak ditemukan.\n";
         }
         favorite = favorite->next;
     }
@@ -721,25 +727,27 @@ void favoriteBuku(listBuku LB){
 
 
 void showAllData(listBuku LB, listRelasi LR){
-    bool adaPeminjam = false;
-    int NBuku, NPeminjam = 1;
+    int NBuku = 1;
     adrBuku B = LB.first;
-    adrRelasi R = LR.first;
-
+    
+    NBuku = 1;
     while(B != nullptr){
+        bool adaPeminjam = false;
+        int NPeminjam = 1;
+        adrRelasi R = LR.first;
         // Cetak Buku
-        NBuku = 1;
-        cout << NBuku << ". ID Buku        :" << B->info.idBuku << "\n";
+        cout << NBuku << ". ID Buku     :" << B->info.idBuku << "\n";
         cout << "Judul Buku     :" << B->info.judulBuku << "\n";
         cout << "Tahun Terbit   :" << B->info.tahunTerbit << "\n";
         cout << "Rating         :" << B->info.rating << "\n";
         cout << "Dipinjam oleh  :\n";
-
+        
         while(R != nullptr){
             //Cetak isi Peminjam
-            adaPeminjam = true;
+            // adaPeminjam = false;
             if(R->buku == B){
                 if(R->peminjam != nullptr){
+                    adaPeminjam = true;
                     cout << NPeminjam << "." <<  R->peminjam->info.nama << "\n";
                     NPeminjam++;
                 }
@@ -747,9 +755,10 @@ void showAllData(listBuku LB, listRelasi LR){
             R = R->next;
         }
         if(!adaPeminjam){
-            cout << "Tidak ada aksi peminjaman\n";
+            cout << "-> Tidak ada aksi peminjaman\n";
         }
         NBuku++;
+        cout << "\n";
         B = B->next;
     }
 
